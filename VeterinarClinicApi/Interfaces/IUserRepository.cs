@@ -4,12 +4,13 @@ namespace VeterinarClinicApi.Interfaces
 {
     public interface IUserRepository
     {
-        bool Authorization(string Email, string Password);
-
+        //авторизация пользователя
+        User Authorization(string Email, string Password);
+        //проверка существования пользователя по почте
         bool UserExistsOfEmail(string Email);
-
+        //получение данных
         User GetUser(int UserId);
-
+        //проверка существования пользователя по id
         bool UserExistsOfId(int UserId);
     }
 }

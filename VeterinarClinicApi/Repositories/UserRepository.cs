@@ -1,4 +1,5 @@
-﻿using VeterinarClinicApi.Interfaces;
+﻿using VeterinarClinicApi.Another;
+using VeterinarClinicApi.Interfaces;
 using VeterinarClinicApi.Models;
 
 namespace VeterinarClinicApi.Repositories
@@ -9,24 +10,26 @@ namespace VeterinarClinicApi.Repositories
 
         public UserRepository(GoncharovaContext context) => _context = context;
 
-        public bool Authorization(string Email, string Password)
+        //авторизация пользователя
+        public User Authorization(string Email, string Password)
         {
-            return _context.Users.Any(u => u.Email == Email);
+            string hashPassword = md5.hashPasswordToMd5(Password);
+            return _context.Users.FirstOrDefault(u => u.Email == Email && u.Password == hashPassword);
         }
-
+        //получение данных
         public User GetUser(int UserId)
         {
-            throw new NotImplementedException();
+            return _context.Users.FirstOrDefault(u => u.UserId == UserId);
         }
-
+        //проверка существования пользователя по почте
         public bool UserExistsOfEmail(string Email)
         {
             return _context.Users.Any(u => u.Email == Email);
         }
-
+        //проверка существования пользователя по id
         public bool UserExistsOfId(int UserId)
         {
-            throw new NotImplementedException();
+            return _context.Users.Any(u => u.UserId == UserId);
         }
     }
 }
