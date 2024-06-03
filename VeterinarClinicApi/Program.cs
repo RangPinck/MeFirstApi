@@ -18,6 +18,7 @@ namespace VeterinarClinicApi
             builder.Services.AddControllers();
             builder.Services.AddScoped<IAnimalRepository, AnimalRepository>();
             builder.Services.AddScoped<IUserRepository, UserRepository>();
+            builder.Services.AddScoped<IMedicalHistoryOfAnimal, MedicalHistoryRepository>();
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
             builder.Services.AddDbContext<GoncharovaContext>(options =>

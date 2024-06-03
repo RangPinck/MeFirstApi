@@ -18,7 +18,7 @@ namespace VeterinarClinicApi.Controllers
             _mapper = mapper;
         }
 
-        [HttpGet("User")]
+        [HttpGet("GetAnimalOfUserId")]
         [ProducesResponseType(200, Type = typeof(IEnumerable<Animal>))]
         [ProducesResponseType(400)]
         public IActionResult GetAnimalOfUser(int User)
