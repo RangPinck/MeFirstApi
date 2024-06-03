@@ -38,7 +38,7 @@ namespace VeterinarClinicApi.Controllers
                 return NotFound($"User with email \"{Email}\" not found");
 
             var user =
-                _mapper.Map<UserDto>(
+                _mapper.Map<AuthorizationDto>(
                 _userRepository.Authorization(Email.Trim(), Password.Trim()));
 
             if (!ModelState.IsValid)

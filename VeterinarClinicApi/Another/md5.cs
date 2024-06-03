@@ -15,7 +15,7 @@ namespace VeterinarClinicApi.Another
             StringBuilder sb = new StringBuilder();
             foreach (var a in hash)
             {
-                sb.Append(a.ToString("X2"));
+                sb.Append(a.ToString("x2"));
             }
 
             return Convert.ToString(sb);

@@ -8,7 +8,7 @@ namespace VeterinarClinicApi.Mapping
     {
         public MappingProfileAuthorization()
         {
-            CreateMap<User, UserDto>();
+            CreateMap<User, AuthorizationDto>();
         }
     }
 }
