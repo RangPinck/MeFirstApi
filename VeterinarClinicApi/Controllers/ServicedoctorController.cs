@@ -20,13 +20,25 @@ namespace VeterinarClinicApi.Controllers
             _mapper = mapper;
         }
 
-        //[HttpGet("GetDoctors")]
-        //[ProducesResponseType(200, Type = typeof(IEnumerable<Servicedoctor>))]
-        //[ProducesResponseType(400)]
-        //public IActionResult GetDoctors(int serviceId)
-        //{
-            
-        //}
+        [HttpGet("GetDoctors")]
+        [ProducesResponseType(200, Type = typeof(IEnumerable<Servicedoctor>))]
+        [ProducesResponseType(400)]
+        public IActionResult GetDoctors(int serviceId)
+        {
+            if(! _servicedoctor.ServiceExists(serviceId))
+                return NotFound($"Doctor that cam made service {serviceId} id not found.");
+
+            var sd =
+                _mapper.Map<List<DoctorNameDto>>(
+                    _servicedoctor.GetDoctors(serviceId)
+                    );
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            return Ok(sd);
+        }
 
 
         [HttpGet("GetServices")]
@@ -34,7 +46,7 @@ namespace VeterinarClinicApi.Controllers
         [ProducesResponseType(400)]
         public IActionResult GetServices(int doctorId)
         {
-            if (!_servicedoctor.ServiceExists(doctorId))
+            if (!_servicedoctor.DoctorExists(doctorId))
                 return NotFound($"Services that make doctor of id {doctorId} id not found.");
 
             var sd =
