@@ -54,5 +54,11 @@ namespace VeterinarClinicApi.Repositories
         {
             return _context.Animals.Any(a => a.AnimalId == ainmalId);
         }
+
+        public bool UpdateAnimal(Animal animal)
+        {
+            _context.Animals.Update(animal);
+            return Save();
+        }
     }
 }

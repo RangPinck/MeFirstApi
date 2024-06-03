@@ -1,8 +1,10 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using System.Net.Mail;
 using VeterinarClinicApi.Dto;
 using VeterinarClinicApi.Interfaces;
 using VeterinarClinicApi.Models;
+using VeterinarClinicApi.Repositories;
 
 namespace VeterinarClinicApi.Controllers
 {
@@ -75,6 +77,36 @@ namespace VeterinarClinicApi.Controllers
             }
 
             return Ok("Successfully created");
+        }
+
+        [HttpPut("UpdateAnimal")]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(404)]
+        public IActionResult UpdateUser(int animalId, [FromBody] AnimalDto update)
+        {
+            if (update == null)
+                return BadRequest(ModelState);
+
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            if (!_animalRepository.AnimalExists(animalId))
+                return NotFound("Animal not found.");
+
+            var uUp = _mapper.Map<Animal>(update);
+
+            uUp.AnimalId = animalId;
+           
+            if (!_animalRepository.UpdateAnimal(uUp))
+            {
+                ModelState.AddModelError("", "Something went wrong updating.");
+                return StatusCode(500, ModelState);
+            }
+
+            return NoContent();
         }
     }
 }

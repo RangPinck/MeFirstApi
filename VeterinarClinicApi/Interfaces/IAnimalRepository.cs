@@ -10,6 +10,8 @@ namespace VeterinarClinicApi.Interfaces
         bool OwnerExists(int userId);
         //создание питоца
         bool CreateAnimal(Animal animal);
+        //обновление питоца
+        bool UpdateAnimal(Animal animal);
         //Сохранение изменений
         bool Save();
         //получение списка питомцев 

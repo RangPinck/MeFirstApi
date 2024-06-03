@@ -9,6 +9,7 @@ namespace VeterinarClinicApi.Mapping
         public MappingProfileAnimal()
         {
             CreateMap<Animal, AnimalDto>();
+            CreateMap<AnimalDto, Animal>();
         }
     }
 }
