@@ -91,6 +91,8 @@ namespace VeterinarClinicApi.Controllers
             var creating =
                 _mapper.Map<Medicalhistory>(create);
 
+           // creating.Visitingtime = creating.Visitingtime.ToUniversalTime();
+
             if (!_medical.CreateAppointment(creating))
             {
                 ModelState.AddModelError("", "Something went wrong saving.");

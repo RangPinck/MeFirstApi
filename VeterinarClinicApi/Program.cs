@@ -20,6 +20,8 @@ namespace VeterinarClinicApi
             builder.Services.AddScoped<IMedicalHistoryOfAnimal, MedicalHistoryRepository>();
             builder.Services.AddScoped<IServicedoctorRepository, ServicedoctorRepository>();
             builder.Services.AddEndpointsApiExplorer();
+            builder.Services.AddAuthorization();
+            builder.Services.AddControllers();
             builder.Services.AddSwaggerGen();
             builder.Services.AddDbContext<GoncharovaContext>(options =>
             {
@@ -27,7 +29,7 @@ namespace VeterinarClinicApi
                     builder.Configuration.GetConnectionString("DefaultConnection")
                     );
             });
-
+            
             var app = builder.Build();
 
             if (app.Environment.IsDevelopment())
@@ -35,6 +37,7 @@ namespace VeterinarClinicApi
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
+
 
             app.UseHttpsRedirection();
             app.UseAuthorization();
