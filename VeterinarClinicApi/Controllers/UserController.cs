@@ -1,9 +1,11 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using System.Net.Mail;
+using VeterinarClinicApi.Another;
 using VeterinarClinicApi.Dto;
 using VeterinarClinicApi.Interfaces;
 using VeterinarClinicApi.Models;
+using VeterinarClinicApi.Repositories;
 
 namespace VeterinarClinicApi.Controllers
 {
@@ -68,6 +70,58 @@ namespace VeterinarClinicApi.Controllers
                 return BadRequest();
 
             return Ok(user);
+        }
+
+        [HttpPost]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(400)]
+        public IActionResult CreateUser([FromBody] CreateUserDto create)
+        {
+            if (create == null)
+                return BadRequest(ModelState);
+
+            try
+            {
+                new MailAddress(create.Email);
+            }
+            catch (FormatException)
+            {
+                ModelState.AddModelError("", "Email not correct.");
+                return StatusCode(422, ModelState);
+            }
+
+
+            var animal =
+                _userRepository.GetUsers()
+                .FirstOrDefault(u =>
+                u.Email.Trim().ToLower() == create.Email.Trim().ToLower() ||
+                u.Phone == create.Phone
+                );
+
+            if (animal != null)
+            {
+                ModelState.AddModelError("", "User already exists.");
+                return StatusCode(422, ModelState);
+            }
+
+
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var creating =
+                _mapper.Map<User>(create);
+
+            creating.Password = md5.hashPasswordToMd5(creating.Password);
+
+            if (!_userRepository.CreateUser(creating))
+            {
+                ModelState.AddModelError("", "Something went wrong saving.");
+                return StatusCode(500, ModelState);
+            }
+
+            return Ok("Successfully created");
         }
     }
 }

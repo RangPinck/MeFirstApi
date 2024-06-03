@@ -12,5 +12,11 @@ namespace VeterinarClinicApi.Interfaces
         User GetUser(int UserId);
         //проверка существования пользователя по id
         bool UserExistsOfId(int UserId);
+        //получение спииска пользователей
+        ICollection<User> GetUsers();
+        //создание пользователя
+        bool CreateUser(User user);
+        //Сохранение изменений
+        bool Save();
     }
 }

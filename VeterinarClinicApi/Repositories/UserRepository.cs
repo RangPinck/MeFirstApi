@@ -21,6 +21,12 @@ namespace VeterinarClinicApi.Repositories
         {
             return _context.Users.FirstOrDefault(u => u.UserId == UserId);
         }
+
+        public ICollection<User> GetUsers()
+        {
+            return _context.Users.ToList();
+        }
+
         //проверка существования пользователя по почте
         public bool UserExistsOfEmail(string Email)
         {
@@ -30,6 +36,18 @@ namespace VeterinarClinicApi.Repositories
         public bool UserExistsOfId(int UserId)
         {
             return _context.Users.Any(u => u.UserId == UserId);
+        }
+
+        public bool CreateUser(User user)
+        {
+            _context.Users.Add(user);
+            return Save();
+        }
+
+        public bool Save()
+        {
+            var saved = _context.SaveChanges();
+            return saved > 0 ? true : false;
         }
     }
 }
