@@ -37,5 +37,44 @@ namespace VeterinarClinicApi.Controllers
 
             return Ok(animal);
         }
+
+        [HttpPost]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(400)]
+        public IActionResult CreateAnimal([FromBody] CreateAnimalDto create)
+        {
+            if (create == null)
+                return BadRequest(ModelState);
+
+            var animal =
+                _animalRepository.GetAnimals()
+                .FirstOrDefault(a =>
+                    a.Name.Trim().ToLower() == create.Name.Trim().ToLower() &&
+                    a.Owner == create.Owner
+                    );
+
+            if (animal != null)
+            {
+                ModelState.AddModelError("","Animal already exists.");
+                return StatusCode(422, ModelState);
+            }
+
+
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var creating =
+                _mapper.Map<Animal>(create);
+
+            if (! _animalRepository.CreateAnimal(creating))
+            {
+                ModelState.AddModelError("", "Something went wrong saving.");
+                return StatusCode(500, ModelState);
+            }
+
+            return Ok("Successfully created");
+        }
     }
 }

@@ -32,5 +32,22 @@ namespace VeterinarClinicApi.Repositories
         {
             return userId>-1?_context.Animals.Any(a => a.Owner == userId) : true;
         }
+
+        public bool CreateAnimal(Animal animal)
+        {
+            _context.Animals.Add(animal);
+            return Save();
+        }
+
+        public bool Save()
+        {
+            var saved = _context.SaveChanges();
+            return saved > 0 ? true : false;
+        }
+
+        public ICollection<Animal> GetAnimals()
+        {
+            return _context.Animals.ToList();
+        }
     }
 }
