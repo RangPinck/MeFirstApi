@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using System.Net.Mail;
 using VeterinarClinicApi.Another;
@@ -121,6 +122,47 @@ namespace VeterinarClinicApi.Controllers
             }
 
             return Ok("Successfully created");
+        }
+
+        [HttpPut("UpdateUser")]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(404)]
+        public IActionResult UpdateUser(int userId, [FromBody] CreateUserDto update)
+        {
+            if (update == null)
+                return BadRequest(ModelState);
+
+            try
+            {
+                new MailAddress(update.Email);
+            }
+            catch (FormatException)
+            {
+                ModelState.AddModelError("", "Email not correct.");
+                return StatusCode(422, ModelState);
+            }
+
+            if (!_userRepository.UserExistsOfId(userId))
+                return NotFound("User not found.");
+
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var uUp = _mapper.Map<User>(update);
+
+            uUp.UserId = userId;
+            uUp.Password = md5.hashPasswordToMd5(uUp.Password);
+
+            if (! _userRepository.UpdateUser(uUp))
+            {
+                ModelState.AddModelError("", "Something went wrong updating.");
+                return StatusCode(500, ModelState);
+            }
+
+            return NoContent();
         }
     }
 }

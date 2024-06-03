@@ -16,6 +16,8 @@ namespace VeterinarClinicApi.Interfaces
         ICollection<User> GetUsers();
         //создание пользователя
         bool CreateUser(User user);
+        //обвновление
+        bool UpdateUser(User user);
         //Сохранение изменений
         bool Save();
     }
