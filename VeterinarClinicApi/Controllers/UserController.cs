@@ -49,5 +49,25 @@ namespace VeterinarClinicApi.Controllers
 
             return Ok(user);
         }
+
+
+        [HttpGet("UserData")]
+        [ProducesResponseType(200, Type = typeof(User))]
+        [ProducesResponseType(400)]
+        public IActionResult GetUserData(int UserId)
+        {
+            if(!_userRepository.UserExistsOfId(UserId))
+                return NotFound($"User with Id \"{UserId}\" not found");
+
+            var user =
+                _mapper.Map<UserDto>(
+                    _userRepository.GetUser(UserId)
+                    );
+
+            if (!ModelState.IsValid)
+                return BadRequest();
+
+            return Ok(user);
+        }
     }
 }
