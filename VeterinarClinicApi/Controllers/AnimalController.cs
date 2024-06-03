@@ -19,8 +19,9 @@ namespace VeterinarClinicApi.Controllers
 
         //[HttpGet]
         //[ProducesResponseType(200, Type = typeof(IEnumerable<Animal>))]
-        //public IAnimalRepository GetAnimalRepository(int? Owner) { 
-        //    var animal = _animalRepository.GetAnimals(Owner);
+        //public IAnimalRepository GetAnimalOfOwner(int? Owner)
+        //{
+        //    var animal = _animalRepository.GetAnimalOfOwner(Owner);
 
         //    return Ok(animal);
         //}

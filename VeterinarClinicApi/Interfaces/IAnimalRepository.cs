@@ -4,6 +4,7 @@ namespace VeterinarClinicApi.Interfaces
 {
     public interface IAnimalRepository
     {
-        ICollection<Animal> GetAnimals(int? Owner);
+        Animal GetAnimal(int animalId);
+        ICollection<Animal> GetAnimalOfOwner(int? owner);
     }
 }

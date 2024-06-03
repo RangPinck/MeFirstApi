@@ -12,12 +12,19 @@ namespace VeterinarClinicApi.Repositories
             _context = context;
         }
 
-        public ICollection<Animal> GetAnimals(int? Owner)
+        public Animal GetAnimal(int animalId)
         {
-            var animalList =
-                _context.Animals.Where(a => a.Owner == Owner).ToList();
+            Animal animal =
+                _context.Animals.FirstOrDefault(a => a.AnimalId == animalId);
 
-            return animalList;
+            return animal;
+        }
+
+        public ICollection<Animal> GetAnimalOfOwner(int? ownerId)
+        {
+            var animal =
+                _context.Animals.Where(a => a.Owner ==  ownerId).ToList();
+            return animal;
         }
     }
 }
