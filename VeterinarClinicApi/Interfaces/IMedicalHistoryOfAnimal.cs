@@ -8,5 +8,13 @@ namespace VeterinarClinicApi.Interfaces
         ICollection<Medicalhistory> GetMedicalHistoryOfAnimal(int animalId);
         //проверка наличия у питомца истории болезней
         bool AnimalExistInMedicalHistory(int animalId);
+        //создание записи на приём
+        bool CreateAppointment(Medicalhistory mh);
+        //Сохранение изменений
+        bool Save();
+        //получение всей истории болезней
+        ICollection<Medicalhistory> GetMedicalHistoryAll();
+
+
     }
 }

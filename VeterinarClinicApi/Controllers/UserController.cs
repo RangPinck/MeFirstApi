@@ -104,7 +104,6 @@ namespace VeterinarClinicApi.Controllers
                 return StatusCode(422, ModelState);
             }
 
-
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);

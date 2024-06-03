@@ -22,5 +22,22 @@ namespace VeterinarClinicApi.Repositories
                 .Include(mh => mh.DoctorNavigation)
                 .ToList();
         }
+
+        public bool CreateAppointment(Medicalhistory mh)
+        {
+            _context.Medicalhistories.Add(mh);
+            return Save();
+        }
+
+        public bool Save()
+        {
+            var saved = _context.SaveChanges();
+            return saved > 0 ? true : false;
+        }
+
+        public ICollection<Medicalhistory> GetMedicalHistoryAll()
+        {
+            return _context.Medicalhistories.ToList();
+        }
     }
 }

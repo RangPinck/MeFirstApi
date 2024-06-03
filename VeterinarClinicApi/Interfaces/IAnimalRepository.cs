@@ -14,5 +14,7 @@ namespace VeterinarClinicApi.Interfaces
         bool Save();
         //получение списка питомцев 
         ICollection<Animal> GetAnimals();
+        //проверка наличия питомца
+        bool AnimalExists(int ainmalId);
     }
 }
