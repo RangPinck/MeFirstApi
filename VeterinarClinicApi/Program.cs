@@ -29,7 +29,16 @@ namespace VeterinarClinicApi
                     builder.Configuration.GetConnectionString("DefaultConnection")
                     );
             });
-            
+            builder.Services.AddCors(
+                option => 
+                option.AddPolicy(
+                    "AllowAcces", builder =>
+                        builder.AllowAnyOrigin()
+                        .AllowAnyHeader()
+                        .AllowAnyMethod()
+                    ));
+
+
             var app = builder.Build();
 
             //if (app.Environment.IsDevelopment())
@@ -40,7 +49,7 @@ namespace VeterinarClinicApi
 
             app.UseSwagger();
             app.UseSwaggerUI();
-
+            app.UseCors("AllowAcces");
             app.UseHttpsRedirection();
             app.UseAuthorization();
             app.MapControllers();
