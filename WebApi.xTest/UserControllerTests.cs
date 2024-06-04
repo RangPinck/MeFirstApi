@@ -1,11 +1,9 @@
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
-using System.Data.Common;
 using VeterinarClinicApi.Controllers;
 using VeterinarClinicApi.Dto;
 using VeterinarClinicApi.Interfaces;
 using VeterinarClinicApi.Mapping;
-using VeterinarClinicApi.Models;
 using WebApi.Test.FakeRepositories;
 
 namespace WebApi.Test

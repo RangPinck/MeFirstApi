@@ -1,10 +1,8 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
-using System.Net.Mail;
 using VeterinarClinicApi.Dto;
 using VeterinarClinicApi.Interfaces;
 using VeterinarClinicApi.Models;
-using VeterinarClinicApi.Repositories;
 
 namespace VeterinarClinicApi.Controllers
 {
