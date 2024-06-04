@@ -18,6 +18,8 @@ namespace VeterinarClinicApi.Interfaces
         bool CreateUser(User user);
         //обвновление
         bool UpdateUser(User user);
+        //обвновление
+        bool DeleteUser(User user);
         //Сохранение изменений
         bool Save();
     }

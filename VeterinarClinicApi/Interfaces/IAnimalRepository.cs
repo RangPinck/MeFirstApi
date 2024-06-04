@@ -6,12 +6,16 @@ namespace VeterinarClinicApi.Interfaces
     {
         //получение списка питомцев пользователя
         ICollection<Animal> GetAnimalsOfUserId(int userId);
+        //получение данных животного
+        Animal GetAnimal(int ainmalId);
         //проверка существования питомцев у пользователя
         bool OwnerExists(int userId);
         //создание питоца
         bool CreateAnimal(Animal animal);
         //обновление питоца
         bool UpdateAnimal(Animal animal);
+        //Сохранение изменений
+        bool DeleteAnimal(Animal animal);
         //Сохранение изменений
         bool Save();
         //получение списка питомцев 

@@ -44,7 +44,7 @@ namespace VeterinarClinicApi.Controllers
             return Ok(history);
         }
 
-        [HttpPost]
+        [HttpPost("CreateAppintment")]
         [ProducesResponseType(204)]
         [ProducesResponseType(400)]
         public IActionResult CreateAppintment([FromBody] CreateMedicalHistoryDto create)

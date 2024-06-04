@@ -38,12 +38,9 @@ namespace VeterinarClinicApi
                 app.UseSwaggerUI();
             }
 
-
             app.UseHttpsRedirection();
             app.UseAuthorization();
             app.MapControllers();
-
-            //app.MapGet("/", (GoncharovaContext db) => db.Users.ToList());
 
             app.Run();
         }

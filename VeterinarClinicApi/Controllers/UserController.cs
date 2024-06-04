@@ -54,7 +54,7 @@ namespace VeterinarClinicApi.Controllers
         }
 
 
-        [HttpGet("UserData")]
+        [HttpGet("GetUserData")]
         [ProducesResponseType(200, Type = typeof(User))]
         [ProducesResponseType(400)]
         public IActionResult GetUserData(int UserId)
@@ -73,7 +73,7 @@ namespace VeterinarClinicApi.Controllers
             return Ok(user);
         }
 
-        [HttpPost]
+        [HttpPost("CreateUser")]
         [ProducesResponseType(204)]
         [ProducesResponseType(400)]
         public IActionResult CreateUser([FromBody] CreateUserDto create)
@@ -159,6 +159,31 @@ namespace VeterinarClinicApi.Controllers
             if (! _userRepository.UpdateUser(uUp))
             {
                 ModelState.AddModelError("", "Something went wrong updating.");
+                return StatusCode(500, ModelState);
+            }
+
+            return NoContent();
+        }
+
+        [HttpDelete("DeleteUser")]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(404)]
+        public IActionResult DeleteUser(int userId)
+        {
+            if (!_userRepository.UserExistsOfId(userId))
+                return NotFound("User not found.");
+
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var user = _userRepository.GetUser(userId);
+
+            if (!_userRepository.DeleteUser(user))
+            {
+                ModelState.AddModelError("", "Something went wrong deleting.");
                 return StatusCode(500, ModelState);
             }
 

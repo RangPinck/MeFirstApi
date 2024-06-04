@@ -10,7 +10,7 @@ namespace VeterinarClinicApi.Repositories
 
         public Animal GetAnimal(int animalId)
         {
-            return _context.Animals.First(a => a.AnimalId == animalId);
+            return _context.Animals.FirstOrDefault(u => u.AnimalId == animalId);
         }
 
         public ICollection<Animal> GetAnimalsOfUserId(int userId)
@@ -58,6 +58,12 @@ namespace VeterinarClinicApi.Repositories
         public bool UpdateAnimal(Animal animal)
         {
             _context.Animals.Update(animal);
+            return Save();
+        }
+
+        public bool DeleteAnimal(Animal animal)
+        {
+            _context.Animals.Remove(animal);
             return Save();
         }
     }

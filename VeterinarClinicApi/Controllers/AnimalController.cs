@@ -40,7 +40,7 @@ namespace VeterinarClinicApi.Controllers
             return Ok(animal);
         }
 
-        [HttpPost]
+        [HttpPost("CreateAnimal")]
         [ProducesResponseType(204)]
         [ProducesResponseType(400)]
         public IActionResult CreateAnimal([FromBody] CreateAnimalDto create)
@@ -103,6 +103,31 @@ namespace VeterinarClinicApi.Controllers
             if (!_animalRepository.UpdateAnimal(uUp))
             {
                 ModelState.AddModelError("", "Something went wrong updating.");
+                return StatusCode(500, ModelState);
+            }
+
+            return NoContent();
+        }
+
+        [HttpDelete("DeleteAnimal")]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(404)]
+        public IActionResult DeleteAnimal(int animalId)
+        {
+            if (!_animalRepository.AnimalExists(animalId))
+                return NotFound("Animal not found.");
+
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var animal = _animalRepository.GetAnimal(animalId);
+
+            if (!_animalRepository.DeleteAnimal(animal))
+            {
+                ModelState.AddModelError("", "Something went wrong deleting.");
                 return StatusCode(500, ModelState);
             }
 
