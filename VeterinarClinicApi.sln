@@ -5,7 +5,7 @@ VisualStudioVersion = 17.10.34928.147
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VeterinarClinicApi", "VeterinarClinicApi\VeterinarClinicApi.csproj", "{03F97980-E3D3-4228-B0A6-038BFA647ADE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VCWebApi.xTest", "VCWebApi.xTest\VCWebApi.xTest.csproj", "{7330425C-A323-4F6A-91E8-856972837A79}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApi.xTest", "WebApi.xTest\WebApi.xTest.csproj", "{BD13125B-0B0E-4011-AA43-7488185E470F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,10 @@ Global
 		{03F97980-E3D3-4228-B0A6-038BFA647ADE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{03F97980-E3D3-4228-B0A6-038BFA647ADE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{03F97980-E3D3-4228-B0A6-038BFA647ADE}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7330425C-A323-4F6A-91E8-856972837A79}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7330425C-A323-4F6A-91E8-856972837A79}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7330425C-A323-4F6A-91E8-856972837A79}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7330425C-A323-4F6A-91E8-856972837A79}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BD13125B-0B0E-4011-AA43-7488185E470F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BD13125B-0B0E-4011-AA43-7488185E470F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BD13125B-0B0E-4011-AA43-7488185E470F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BD13125B-0B0E-4011-AA43-7488185E470F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

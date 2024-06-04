@@ -1,9 +1,7 @@
 using Microsoft.EntityFrameworkCore;
-using VeterinarClinicApi.Controllers;
 using VeterinarClinicApi.Interfaces;
 using VeterinarClinicApi.Models;
 using VeterinarClinicApi.Repositories;
-using AutoMapper;
 
 
 namespace VeterinarClinicApi
