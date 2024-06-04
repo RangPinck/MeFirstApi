@@ -79,7 +79,9 @@ namespace WebApi.Test.FakeRepositories
 
         public bool UpdateUser(User user)
         {
-            _fakeUsers[user.UserId] = user;
+            int index = _fakeUsers.FindIndex(u => u.UserId == user.UserId);
+            if (index != -1)
+                _fakeUsers[index] = user;
             return Save();
         }
 

@@ -61,5 +61,41 @@ namespace WebApi.Test
             Assert.IsType<OkObjectResult>(item);
         }
 
+        [Fact]
+        public void GetUserData_ReturnOk()
+        {
+            int userId = 1;
+            var item = _userController.GetUserData(1);
+            Assert.IsType<OkObjectResult>(item);
+        }
+
+        [Fact]
+        public void UpdateUser_NoContent()
+        {
+
+            int userId = 1;
+            CreateUserDto upU = new CreateUserDto()
+            {
+                Surname = "Емельянова",
+                Name = "Ирина",
+                Phone = "+ 7 (919)459-57-74",
+                Email = "emelyanova.veronika@gmail.com",
+                Password = "657"
+            };
+
+            var item = _userController.UpdateUser(1, upU);
+            Assert.IsType<NoContentResult>(item);
+        }
+
+        [Fact]
+        public void DeleteUser_NoContent()
+        {
+
+            int userId = 1;
+
+            var item = _userController.DeleteUser(1);
+            Assert.IsType<NoContentResult>(item);
+        }
+
     }
 }
