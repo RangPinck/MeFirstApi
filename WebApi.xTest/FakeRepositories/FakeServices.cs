@@ -3,15 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using VeterinarClinicApi.Interfaces;
 using VeterinarClinicApi.Models;
 
 namespace WebApi.xTest.FakeRepositories
 {
     public class FakeServices
     {
-        public List<Service> fakeServices()
+        private readonly List<Service> _fakeService;
+        public FakeServices()
         {
-            return new List<Service>()
+            _fakeService = new List<Service>()
             {
                 new Service(){
                     ServiceId = 1,
