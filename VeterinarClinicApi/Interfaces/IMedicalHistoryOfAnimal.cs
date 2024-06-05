@@ -14,7 +14,5 @@ namespace VeterinarClinicApi.Interfaces
         bool Save();
         //получение всей истории болезней
         ICollection<Medicalhistory> GetMedicalHistoryAll();
-
-
     }
 }

@@ -59,7 +59,7 @@ namespace WebApi.xTest
         }
 
         [Fact]
-        public void UpdateUser_ReturnOk()
+        public void UpdateAnimal_ReturnOk()
         {
 
             int animalId = 1;
